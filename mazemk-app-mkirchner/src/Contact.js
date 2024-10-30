@@ -17,6 +17,7 @@ function Contact() {
         </label>
         <br />
         <button type="submit">Senden</button>
+        //haven't found the address yet
       </form>
     </div>
   );
