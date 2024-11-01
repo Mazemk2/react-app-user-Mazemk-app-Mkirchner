@@ -1,31 +1,29 @@
-const mariadb = require('mariadb');
-require('dotenv').config();
-const secrets = require('./secrets.js');
+// db.js
+import mariadb from 'mariadb';
+import dotenv from 'dotenv';
 
-// Funktion zur Herstellung einer Datenbankverbindung und zum Prüfen der Erreichbarkeit
-async function checkDatabaseConnection() {
-  let connection;
+dotenv.config(); // .env-Datei laden
 
-  try {
-    // Verbindung zur Datenbank herstellen
-    connection = await mariadb.createConnection({
-      host: 'localhost',       // Host getrennt von Port definieren
-      port: 3306,              // Port getrennt vom Host angeben
-      user: secrets.db_username,
-      password: secrets.db_password,
-      database: secrets.db_database
-    });
+const getDatabaseConnection = async () => {
+    let connection;
+    
+    try {
+        // Verbindung zur Datenbank herstellen
+        connection = await mariadb.createConnection({
+            host: process.env.DB_HOST || 'localhost',
+            port: process.env.DB_PORT || 3306,
+            user: process.env.DB_USER || 'root',
+            password: process.env.DB_PASSWORD || 'Root',
+            database: process.env.DB_DATABASE || 'project_db',
+        });
+        console.log("Verbindung zur Datenbank erfolgreich!");
+        return connection; // Rückgabe der Verbindung
+    } catch (error) {
+        console.error("Fehler bei der Verbindung zur Datenbank:", error);
+        throw error; // Fehler weitergeben
+    } finally {
+        if (connection) await connection.end(); // Verbindung schließen, falls sie geöffnet ist
+    }
+};
 
-    console.log("Verbindung zur Datenbank erfolgreich!"); // Erfolgreiche Verbindung anzeigen
-
-  } catch (error) {
-    console.error("Fehler bei der Verbindung zur Datenbank:", error); // Fehler anzeigen, wenn keine Verbindung möglich ist
-
-  } finally {
-    if (connection) await connection.end(); // Verbindung schließen, falls sie geöffnet ist
-  }
-}
-
-checkDatabaseConnection(); // Funktion aufrufen, um die Verbindung zu prüfen
-
-module.exports = checkDatabaseConnection;
+export default getDatabaseConnection; // Standardexport hinzufügen

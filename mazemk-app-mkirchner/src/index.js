@@ -1,18 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import express from 'express';
+import getDatabaseConnection from './db.js'; // Der Import ist jetzt korrekt
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', async (req, res) => {
+    return res.status(200).json({ hello: 'world' });
+});
+
+// Route zum Überprüfen der Datenbankverbindung
+app.get('/check-db', async (req, res) => {
+    try {
+        await getDatabaseConnection();
+        res.status(200).send('Datenbankverbindung erfolgreich!');
+    } catch (error) {
+        console.error("Fehler bei der Verbindung zur Datenbank:", error);
+        res.status(500).send('Datenbankverbindung fehlgeschlagen.');
+    }
+});
+
+// Server starten
+app.listen(PORT, () => {
+    console.log(`Server läuft auf http://localhost:${PORT}`);
+});
