@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000; // Standard-Port auf 3000 setzen, falls k
 
 // Startseite-Route
 app.get('/', (req, res) => {
-    res.status(200).json({ greeting: 'Hallo, Herbert!' }); // Begrüßungsnachricht
+    res.status(200).json({ greeting: 'Oh, hi Mark!' }); // Begrüßungsnachricht
 });
 
 // Nutzerroute für Datenabruf
