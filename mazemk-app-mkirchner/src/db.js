@@ -1,6 +1,6 @@
 const mariadb = require('mariadb');
 require('dotenv').config();
-require(secrets.js());
+const secrets = require('./secrets.js'); // Pfad zum secrets.js Modul oder zur Datei
 
 // Funktion zur Herstellung einer Datenbankverbindung und zum Prüfen der Erreichbarkeit
 async function checkDatabaseConnection() {
