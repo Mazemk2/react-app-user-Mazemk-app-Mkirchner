@@ -38,5 +38,5 @@ app.get('/users', async (req, res) => {
 
 // Server-Start und Portüberwachung
 app.listen(PORT, () => {
-    console.log(`Server läuft und hört auf http://localhost:${PORT}`);
+    console.log(`Server läuft und hört auf: http://localhost:${PORT}`);
 });
