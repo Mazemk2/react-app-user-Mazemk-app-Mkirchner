@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get('/', async (req, res) => {
-    return res.status(200).json({ hello: 'world' });
+    return res.status(200).json({ hello: 'Oh hi Mark' });
 });
 
 // Route zum Überprüfen der Datenbankverbindung
