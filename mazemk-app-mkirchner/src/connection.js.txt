@@ -9,7 +9,7 @@ app.use(express.json()); // Middleware zum Parsen von JSON-Anfragen
 
 // Begrüßungsroute
 app.get('/', (req, res) => {
-    res.status(200).json({ greeting: 'Hallo, Herbert!' });
+    res.status(200).json({ greeting: 'Oh hallo Mark!' });
 });
 
 // Anmelderoute
