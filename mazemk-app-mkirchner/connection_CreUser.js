@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import getDatabaseConnection from './db.js'; // Stelle sicher, dass dieser Pfad korrekt ist
+import getDatabaseConnection from './db.js'; // sicher, dass dieser Pfad korrekt ist?
 
 const app = express();
 app.use(express.json()); // Middleware für JSON-Parsing
