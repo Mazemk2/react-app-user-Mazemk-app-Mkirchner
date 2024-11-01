@@ -5,7 +5,7 @@ export const db_database = 'project_db';  // Ersetze durch deinen DB-Namen
 export const jwt_secret_key = 'mein-total-geheimer-schluessel';  // Dein geheimer Schlüssel
 
 const secrets = {
-    db_server: 'localhost',
+    db_server: 'root',
     db_username: 'root',
     db_password: 'Root',
     db_database: 'project_db',
