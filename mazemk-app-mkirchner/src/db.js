@@ -1,6 +1,6 @@
 const mariadb = require('mariadb');
 require('dotenv').config();
-const secrets = require('./secrets.js'); // secrets.js wird korrekt per require geladen
+const secrets = require('./secrets.js');
 
 // Funktion zur Herstellung einer Datenbankverbindung und zum Prüfen der Erreichbarkeit
 async function checkDatabaseConnection() {
@@ -9,8 +9,8 @@ async function checkDatabaseConnection() {
   try {
     // Verbindung zur Datenbank herstellen
     connection = await mariadb.createConnection({
-      host: secrets.db_server,          // Werte aus secrets.js verwenden
-      port: process.env.DB_PORT || 3306, // Fallback auf Port 3306, falls DB_PORT nicht gesetzt
+      host: 'localhost',       // Host getrennt von Port definieren
+      port: 3306,              // Port getrennt vom Host angeben
       user: secrets.db_username,
       password: secrets.db_password,
       database: secrets.db_database
