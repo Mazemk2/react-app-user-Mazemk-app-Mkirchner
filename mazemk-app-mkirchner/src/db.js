@@ -1,5 +1,6 @@
 const mariadb = require('mariadb');
 require('dotenv').config();
+require(secrets.js());
 
 // Funktion zur Herstellung einer Datenbankverbindung und zum Prüfen der Erreichbarkeit
 async function checkDatabaseConnection() {
